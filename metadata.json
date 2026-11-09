@@ -1,0 +1,6 @@
+{
+  "name": "Vaana Retreat – Luxury Nature Sanctuary & Resort",
+  "description": "Experience serene luxury, organic architecture, and restorative wilderness living at Vaana Retreat. Reserve suites, pool villas, and bespoke dining.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
