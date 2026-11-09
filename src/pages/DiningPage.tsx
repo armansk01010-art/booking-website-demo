@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types/retreat';
 import { DINING_INFO, RESORT_IMAGES } from '../data/retreatData';
+import { SafeImage } from '../components/SafeImage';
 import { Utensils, Clock, Flame, Leaf, CheckCircle2, HeartHandshake, ArrowRight } from 'lucide-react';
 
 interface DiningPageProps {
@@ -55,14 +56,17 @@ export const DiningPage: React.FC<DiningPageProps> = ({ onNavigate }) => {
 
       {/* Hero Visual */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-20">
-        <div className="aspect-16/9 md:aspect-21/9 overflow-hidden border border-[#AD9870]/30 shadow-xl relative">
-          <img
+        <div className="overflow-hidden border border-[#AD9870]/30 shadow-xl relative">
+          <SafeImage
             src={RESORT_IMAGES.dining}
             alt="The Prana Pavilion Open Air Dining"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
+            aspectRatio="aspect-16/9 md:aspect-21/9"
+            width={1200}
+            height={675}
+            loading="eager"
+            decoding="async"
           />
-          <div className="absolute bottom-6 left-6 right-6 md:right-auto bg-[#1A2C23]/90 backdrop-blur-md p-6 text-white max-w-md border border-white/10">
+          <div className="absolute bottom-6 left-6 right-6 md:right-auto bg-[#1A2C23]/90 backdrop-blur-md p-6 text-white max-w-md border border-white/10 z-10">
             <div className="text-[10px] uppercase tracking-[0.2em] text-[#AD9870] font-semibold">
               The Setting
             </div>

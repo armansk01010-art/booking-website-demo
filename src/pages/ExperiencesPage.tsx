@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId, ExperienceItem } from '../types/retreat';
 import { EXPERIENCES } from '../data/retreatData';
+import { SafeImage } from '../components/SafeImage';
 import { Clock, Calendar, Check, Compass, ArrowRight } from 'lucide-react';
 
 interface ExperiencesPageProps {
@@ -68,17 +69,22 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onNavigate }) 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Photo */}
               <div
-                className={`lg:col-span-6 relative aspect-16/10 lg:aspect-auto overflow-hidden group ${
+                className={`lg:col-span-6 relative overflow-hidden group ${
                   idx % 2 === 1 ? 'lg:order-2' : ''
                 }`}
               >
-                <img
+                <SafeImage
                   src={exp.image}
                   alt={exp.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  aspectRatio="aspect-16/10 lg:aspect-auto"
+                  width={800}
+                  height={600}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="group-hover:scale-105 transition-transform duration-700"
+                  wrapperClassName="w-full h-full min-h-[280px]"
                 />
-                <div className="absolute top-4 left-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs uppercase tracking-wider font-medium">
+                <div className="absolute top-4 left-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs uppercase tracking-wider font-medium z-10">
                   {exp.category}
                 </div>
               </div>

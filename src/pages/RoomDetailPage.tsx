@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId, RoomCategory } from '../types/retreat';
 import { ROOM_CATEGORIES } from '../data/retreatData';
+import { SafeImage } from '../components/SafeImage';
 import { formatINR, calculateNights, getFutureDate } from '../services/bookingStorage';
 import { ArrowLeft, Check, Users, Maximize2, Bed, Calendar, ShieldCheck, Sparkles, Coffee } from 'lucide-react';
 
@@ -27,6 +28,14 @@ export const RoomDetailPage: React.FC<RoomDetailPageProps> = ({
   const [checkOut, setCheckOut] = useState(() => getFutureDate(5));
   const [adults, setAdults] = useState(Math.min(2, room.maxGuests));
   const [children, setChildren] = useState(0);
+
+  // Preload all gallery images for this room
+  React.useEffect(() => {
+    room.galleryImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [room.galleryImages]);
 
   const nights = calculateNights(checkIn, checkOut);
   const baseTotal = nights * room.pricePerNight;
@@ -88,12 +97,16 @@ export const RoomDetailPage: React.FC<RoomDetailPageProps> = ({
 
         {/* Large Visual Gallery */}
         <div className="space-y-4">
-          <div className="aspect-16/9 md:aspect-21/10 overflow-hidden border border-[#AD9870]/30 shadow-lg">
-            <img
+          <div className="overflow-hidden border border-[#AD9870]/30 shadow-lg">
+            <SafeImage
               src={selectedImage}
               alt={room.name}
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover transition-all duration-500"
+              aspectRatio="aspect-16/9 md:aspect-21/10"
+              width={1200}
+              height={570}
+              loading="eager"
+              decoding="async"
+              className="transition-all duration-500"
             />
           </div>
 
@@ -103,17 +116,24 @@ export const RoomDetailPage: React.FC<RoomDetailPageProps> = ({
               <button
                 key={idx}
                 onClick={() => setSelectedImage(img)}
+                onMouseEnter={() => {
+                  const pre = new Image();
+                  pre.src = img;
+                }}
                 className={`relative w-24 h-16 md:w-32 md:h-20 shrink-0 border-2 overflow-hidden transition-all ${
                   selectedImage === img
                     ? 'border-[#263D32] opacity-100'
                     : 'border-transparent opacity-60 hover:opacity-100'
                 }`}
               >
-                <img
+                <SafeImage
                   src={img}
-                  alt={`View ${idx + 1}`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  alt={`${room.name} View ${idx + 1}`}
+                  aspectRatio="aspect-16/10"
+                  width={320}
+                  height={200}
+                  loading="lazy"
+                  decoding="async"
                 />
               </button>
             ))}

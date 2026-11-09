@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryPhoto } from '../types/retreat';
+import { SafeImage } from './SafeImage';
 
 interface LightboxModalProps {
   photos: GalleryPhoto[];
@@ -15,6 +16,17 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
   onClose,
   onNavigate,
 }) => {
+  // Preload adjacent photos on activeIndex change
+  useEffect(() => {
+    if (activeIndex === null || photos.length === 0) return;
+    const nextIdx = (activeIndex + 1) % photos.length;
+    const prevIdx = (activeIndex - 1 + photos.length) % photos.length;
+    const imgNext = new Image();
+    imgNext.src = photos[nextIdx].src;
+    const imgPrev = new Image();
+    imgPrev.src = photos[prevIdx].src;
+  }, [activeIndex, photos]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (activeIndex === null) return;
@@ -56,11 +68,15 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           <ChevronLeft className="w-6 h-6" />
         </button>
 
-        <img
+        <SafeImage
           src={current.src}
           alt={current.title}
-          referrerPolicy="no-referrer"
+          loading="eager"
+          decoding="async"
+          width={1200}
+          height={900}
           className="max-h-[75vh] max-w-[90vw] object-contain shadow-2xl transition-all duration-300"
+          wrapperClassName="max-h-[75vh] max-w-[90vw] flex items-center justify-center bg-black/30"
         />
 
         <button

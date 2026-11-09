@@ -9,6 +9,7 @@ import {
   formatINR,
   PROMO_CODES,
 } from '../services/bookingStorage';
+import { SafeImage } from '../components/SafeImage';
 import {
   Calendar,
   Users,
@@ -359,14 +360,16 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                         }`}
                       >
                         <div className="space-y-2">
-                          <div className="aspect-16/10 overflow-hidden mb-2">
-                            <img
-                              src={cat.primaryImage}
-                              alt={cat.name}
-                              referrerPolicy="no-referrer"
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
+                          <SafeImage
+                            src={cat.primaryImage}
+                            alt={cat.name}
+                            aspectRatio="aspect-16/10"
+                            width={400}
+                            height={250}
+                            loading="lazy"
+                            decoding="async"
+                            wrapperClassName="mb-2"
+                          />
                           <div className="flex items-baseline justify-between">
                             <h3 className="font-serif text-lg font-medium text-[#263D32]">
                               {cat.name}
@@ -691,14 +694,15 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
                 {/* Room Preview Mini-Card */}
                 <div className="space-y-2">
-                  <div className="aspect-16/9 overflow-hidden">
-                    <img
-                      src={room.primaryImage}
-                      alt={room.name}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <SafeImage
+                    src={room.primaryImage}
+                    alt={room.name}
+                    aspectRatio="aspect-16/9"
+                    width={480}
+                    height={270}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="flex items-baseline justify-between pt-1">
                     <span className="font-serif text-lg font-medium text-[#263D32]">
                       {room.name}

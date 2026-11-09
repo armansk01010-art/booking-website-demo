@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId, RoomCategory } from '../types/retreat';
 import { ROOM_CATEGORIES } from '../data/retreatData';
+import { SafeImage } from '../components/SafeImage';
 import { formatINR } from '../services/bookingStorage';
 import { Users, Maximize2, Bed, Check, ArrowRight, Eye } from 'lucide-react';
 
@@ -98,17 +99,22 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ onNavigate }) => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Room Photography Gallery Preview */}
               <div
-                className={`lg:col-span-7 relative aspect-16/10 lg:aspect-auto overflow-hidden group ${
+                className={`lg:col-span-7 relative overflow-hidden group ${
                   index % 2 === 1 ? 'lg:order-2' : ''
                 }`}
               >
-                <img
+                <SafeImage
                   src={room.primaryImage}
                   alt={room.name}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  aspectRatio="aspect-16/10 lg:aspect-auto"
+                  width={800}
+                  height={500}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="group-hover:scale-105 transition-transform duration-700"
+                  wrapperClassName="w-full h-full min-h-[300px]"
                 />
-                <div className="absolute top-4 left-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs font-mono tracking-wider">
+                <div className="absolute top-4 left-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs font-mono tracking-wider z-10">
                   {room.sampleAvailability} units available
                 </div>
               </div>

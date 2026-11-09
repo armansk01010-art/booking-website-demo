@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageId, GalleryPhoto } from '../types/retreat';
 import { GALLERY_ITEMS } from '../data/retreatData';
 import { LightboxModal } from '../components/LightboxModal';
+import { SafeImage } from '../components/SafeImage';
 import { Maximize2, Compass } from 'lucide-react';
 
 interface GalleryPageProps {
@@ -66,16 +67,25 @@ export const GalleryPage: React.FC<GalleryPageProps> = () => {
             <div
               key={photo.id}
               onClick={() => setLightboxIndex(index)}
+              onMouseEnter={() => {
+                // Preload high-res on hover
+                const pre = new Image();
+                pre.src = photo.src;
+              }}
               className="group relative cursor-pointer bg-white border border-[#AD9870]/25 overflow-hidden shadow-xs hover:border-[#263D32]/60 transition-all duration-300"
             >
-              <div className="aspect-4/3 overflow-hidden relative">
-                <img
+              <div className="relative overflow-hidden">
+                <SafeImage
                   src={photo.src}
                   alt={photo.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  aspectRatio="aspect-4/3"
+                  width={1200}
+                  height={900}
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white z-10 pointer-events-none">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-[#AD9870]">
                     {photo.category}
                   </span>

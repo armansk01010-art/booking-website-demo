@@ -2,6 +2,7 @@ import React from 'react';
 import { PageId, RoomCategory } from '../types/retreat';
 import { ROOM_CATEGORIES, EXPERIENCES, RESORT_FACTS, RESORT_IMAGES } from '../data/retreatData';
 import { BookingSearchWidget } from '../components/BookingSearchWidget';
+import { SafeImage } from '../components/SafeImage';
 import { ArrowRight, Sparkles, Compass, Wind, Droplets, Sun, ChevronRight } from 'lucide-react';
 import { formatINR } from '../services/bookingStorage';
 
@@ -22,15 +23,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearch }) => {
       {/* 1. Cinematic Hero Section */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Measured Contrast Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img
+        <div className="absolute inset-0 z-0 bg-[#1b2b22]">
+          <SafeImage
             src={RESORT_IMAGES.hero}
             alt="Vaana Retreat Secluded Rainforest Sanctuary at Dusk"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+            pictureSources={[
+              { media: '(max-width: 767px)', srcSet: RESORT_IMAGES.heroMobile },
+              { media: '(min-width: 768px)', srcSet: RESORT_IMAGES.hero },
+            ]}
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            width={1920}
+            height={1080}
+            className="scale-105"
+            wrapperClassName="w-full h-full bg-[#1b2b22]"
           />
           {/* Measured Scrim ensuring WCAG AA contrast for text */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30 pointer-events-none" />
         </div>
 
         {/* Hero Content */}
@@ -106,28 +116,34 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearch }) => {
 
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="overflow-hidden border border-[#AD9870]/20 shadow-md aspect-4/5">
-                <img
-                  src={RESORT_IMAGES.villaPool}
-                  alt="Private pool villa terrace looking out to mountain mist"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
+              <SafeImage
+                src={RESORT_IMAGES.sanctuaryPool}
+                alt="Private pool villa terrace looking out to mountain mist"
+                aspectRatio="aspect-4/5"
+                width={800}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+                className="hover:scale-105 transition-transform duration-700"
+                wrapperClassName="border border-[#AD9870]/20 shadow-md"
+              />
               <p className="text-xs text-[#292929]/70 italic font-serif">
                 Natural stone plunge pools perched along emerald ridge contours.
               </p>
             </div>
 
             <div className="space-y-4 sm:pt-10">
-              <div className="overflow-hidden border border-[#AD9870]/20 shadow-md aspect-4/5">
-                <img
-                  src={RESORT_IMAGES.spa}
-                  alt="Sunken stone lotus bathing sanctuary at Vaana"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
+              <SafeImage
+                src={RESORT_IMAGES.sanctuarySpa}
+                alt="Sunken stone lotus bathing sanctuary at Vaana"
+                aspectRatio="aspect-4/5"
+                width={800}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+                className="hover:scale-105 transition-transform duration-700"
+                wrapperClassName="border border-[#AD9870]/20 shadow-md"
+              />
               <p className="text-xs text-[#292929]/70 italic font-serif">
                 Therapeutic herbal bath rituals guided by Vedic wellness traditions.
               </p>
@@ -164,14 +180,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearch }) => {
                 className="bg-[#F5F2EA] border border-[#AD9870]/30 overflow-hidden flex flex-col group hover:border-[#263D32]/60 transition-all duration-300"
               >
                 {/* Room Image */}
-                <div className="relative aspect-16/10 overflow-hidden">
-                  <img
+                <div className="relative overflow-hidden">
+                  <SafeImage
                     src={room.primaryImage}
                     alt={room.name}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    aspectRatio="aspect-16/10"
+                    width={800}
+                    height={500}
+                    loading="lazy"
+                    decoding="async"
+                    className="group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 right-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs font-mono font-medium tracking-wider">
+                  <div className="absolute top-4 right-4 bg-[#263D32]/90 backdrop-blur-xs text-[#F5F2EA] px-3.5 py-1.5 text-xs font-mono font-medium tracking-wider z-10">
                     {formatINR(room.pricePerNight)}
                     <span className="text-[10px] text-[#AD9870] ml-1 font-sans">/ night</span>
                   </div>
@@ -250,14 +270,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearch }) => {
               key={exp.id}
               className="bg-white border border-[#AD9870]/25 overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300"
             >
-              <div className="relative aspect-4/3 overflow-hidden">
-                <img
+              <div className="relative overflow-hidden">
+                <SafeImage
                   src={exp.image}
                   alt={exp.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  aspectRatio="aspect-4/3"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  decoding="async"
+                  className="group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-3 left-3 bg-[#263D32]/90 text-white text-[10px] uppercase tracking-wider px-2.5 py-1">
+                <div className="absolute top-3 left-3 bg-[#263D32]/90 text-white text-[10px] uppercase tracking-wider px-2.5 py-1 z-10">
                   {exp.category}
                 </div>
               </div>
@@ -301,14 +325,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearch }) => {
 
       {/* 5. Dining Feature Banner */}
       <section className="relative py-28 px-6 md:px-10 overflow-hidden bg-[#263D32] text-[#F5F2EA]">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src={RESORT_IMAGES.dining}
-            alt="The Prana Pavilion dining"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <SafeImage
+          src={RESORT_IMAGES.dining}
+          alt="The Prana Pavilion dining"
+          width={1200}
+          height={675}
+          loading="lazy"
+          decoding="async"
+          wrapperClassName="absolute inset-0 opacity-20 pointer-events-none"
+        />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
           <span className="text-xs uppercase tracking-[0.25em] text-[#AD9870] font-semibold">

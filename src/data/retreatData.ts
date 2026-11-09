@@ -1,13 +1,32 @@
 import { RoomCategory, ExperienceItem, DiningVenue, GalleryPhoto, BookingAddon } from '../types/retreat';
 
 export const RESORT_IMAGES = {
-  hero: '/src/assets/images/hero_resort_exterior_1794218953665.jpg',
-  villaPool: '/src/assets/images/villa_pool_deck_1794218954139.jpg',
-  dining: '/src/assets/images/dining_pavilion_1794218955598.jpg',
-  spa: '/src/assets/images/spa_wellness_bath_1794218956117.jpg',
-  gardenRoom: '/src/assets/images/room_garden_view_1794218976247.jpg',
-  deluxeValley: '/src/assets/images/room_deluxe_valley_1794218976621.jpg',
-  premiumSuite: '/src/assets/images/room_premium_suite_1794218977814.jpg',
+  hero: '/images/hero-resort-exterior.webp',
+  heroMobile: '/images/hero-resort-exterior-mobile.webp',
+  sanctuaryPool: '/images/sanctuary-pool-villa.webp',
+  sanctuarySpa: '/images/sanctuary-lotus-spa.webp',
+  villaPool: '/images/room-pool-villa.webp',
+  spa: '/images/sanctuary-lotus-spa.webp',
+  gardenRoom: '/images/room-garden-view.webp',
+  deluxeValley: '/images/room-deluxe-valley.webp',
+  premiumSuite: '/images/room-premium-suite.webp',
+  dining: '/images/dining-pavilion-dusk.webp',
+  // Specific experiences
+  expSpa: '/images/experience-spa-wellness.webp',
+  expPool: '/images/experience-spring-pool.webp',
+  expDining: '/images/experience-prana-dining.webp',
+  expTrail: '/images/experience-bamboo-trail.webp',
+  expTea: '/images/experience-tea-estate.webp',
+  expStars: '/images/experience-stargazing.webp',
+  // Specific gallery
+  galleryHero: '/images/gallery-hero-pavilion.webp',
+  galleryPool: '/images/gallery-pool-terrace.webp',
+  galleryDining: '/images/gallery-dining-evening.webp',
+  gallerySpa: '/images/gallery-spa-soaking.webp',
+  galleryGarden: '/images/gallery-garden-room.webp',
+  galleryValley: '/images/gallery-valley-suite.webp',
+  galleryPremium: '/images/gallery-premium-lounge.webp',
+  galleryRidges: '/images/gallery-estate-ridges.webp',
 };
 
 export const ROOM_CATEGORIES: RoomCategory[] = [
@@ -201,7 +220,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Wellness & Spa',
     duration: '60 – 120 mins',
     schedule: 'Daily, 08:00 – 19:30',
-    image: RESORT_IMAGES.spa,
+    image: RESORT_IMAGES.expSpa,
     shortDesc:
       'Time-honored Vedic wellness therapies administered by certified practitioners using herb-infused warm botanical oils.',
     fullDesc:
@@ -221,7 +240,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Wellness & Spa',
     duration: 'All day leisure',
     schedule: 'Daily, 06:30 – 19:00',
-    image: RESORT_IMAGES.villaPool,
+    image: RESORT_IMAGES.expPool,
     shortDesc:
       'A natural stone infinity pool seamlessly merging with the edge of the rainforest valley and distant mountain peaks.',
     fullDesc:
@@ -240,7 +259,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Dining & Hearth',
     duration: 'Breakfast, Lunch & Dinner',
     schedule: 'Daily, 07:00 – 22:30',
-    image: RESORT_IMAGES.dining,
+    image: RESORT_IMAGES.expDining,
     shortDesc:
       'Hyper-seasonal farm-to-table cuisine celebrating native spices, heirloom grains, and regional culinary heritage.',
     fullDesc:
@@ -259,7 +278,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Outdoors & Wilderness',
     duration: '2.5 hours',
     schedule: 'Daily at 06:30 & 16:00',
-    image: RESORT_IMAGES.hero,
+    image: RESORT_IMAGES.expTrail,
     shortDesc:
       'Wander with our resident naturalist through ancient bamboo forests, hidden cascades, and rare medicinal groves.',
     fullDesc:
@@ -278,7 +297,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Cultural & Estate',
     duration: '90 mins',
     schedule: 'Tuesdays, Thursdays & Saturdays at 11:00',
-    image: RESORT_IMAGES.gardenRoom,
+    image: RESORT_IMAGES.expTea,
     shortDesc:
       'Hand-pick two leaves and a bud across heritage tea slopes followed by a sommelier cupping session.',
     fullDesc:
@@ -298,7 +317,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     category: 'Outdoors & Wilderness',
     duration: '1.5 hours',
     schedule: 'Clear evenings at 20:30',
-    image: RESORT_IMAGES.deluxeValley,
+    image: RESORT_IMAGES.expStars,
     shortDesc:
       'Deep dark sky astronomy far from urban light pollution with computerized celestial telescopes and warm cocoa.',
     fullDesc:
@@ -408,7 +427,7 @@ export const GALLERY_ITEMS: GalleryPhoto[] = [
     title: 'Architectural Forest Pavilion at Twilight',
     category: 'property',
     caption: 'Reclaimed teak timbers and reflecting water ponds blending into the mountain slope',
-    src: RESORT_IMAGES.hero,
+    src: RESORT_IMAGES.galleryHero,
     featured: true,
   },
   {
@@ -416,7 +435,7 @@ export const GALLERY_ITEMS: GalleryPhoto[] = [
     title: 'Private Infinity Plunge Pool & Mist Deck',
     category: 'rooms',
     caption: 'Natural granite plunge pool overlooking the emerald canopy at dawn',
-    src: RESORT_IMAGES.villaPool,
+    src: RESORT_IMAGES.galleryPool,
     featured: true,
   },
   {
@@ -424,7 +443,7 @@ export const GALLERY_ITEMS: GalleryPhoto[] = [
     title: 'Candlelit Open-Air Dining Pavilion',
     category: 'dining',
     caption: 'Linen-draped evening tables lit by handcrafted bronze lanterns',
-    src: RESORT_IMAGES.dining,
+    src: RESORT_IMAGES.galleryDining,
     featured: true,
   },
   {
@@ -432,7 +451,7 @@ export const GALLERY_ITEMS: GalleryPhoto[] = [
     title: 'The Lotus Sunken Stone Soaking Bath',
     category: 'wellness',
     caption: 'Granite bath scattered with fresh white lotus and natural stream water',
-    src: RESORT_IMAGES.spa,
+    src: RESORT_IMAGES.gallerySpa,
     featured: true,
   },
   {
@@ -440,28 +459,28 @@ export const GALLERY_ITEMS: GalleryPhoto[] = [
     title: 'Garden View Room Private Verandah',
     category: 'rooms',
     caption: 'Serene handcrafted king bed opening directly to native botanical gardens',
-    src: RESORT_IMAGES.gardenRoom,
+    src: RESORT_IMAGES.galleryGarden,
   },
   {
     id: 'g-6',
     title: 'Deluxe Valley Suite Balcony View',
     category: 'rooms',
     caption: 'Freestanding stone bathtub with unbroken vistas across mist-filled valleys',
-    src: RESORT_IMAGES.deluxeValley,
+    src: RESORT_IMAGES.galleryValley,
   },
   {
     id: 'g-7',
     title: 'Premium Suite Living Pavilion',
     category: 'rooms',
     caption: 'Spacious timber lounge area with natural linen seating and open rafters',
-    src: RESORT_IMAGES.premiumSuite,
+    src: RESORT_IMAGES.galleryPremium,
   },
   {
     id: 'g-8',
     title: 'Pristine Mountain Ridges Surrounding Vaana',
     category: 'surroundings',
     caption: 'Protected rainforest buffer zone ensuring stillness and untouched biodiversity',
-    src: RESORT_IMAGES.hero,
+    src: RESORT_IMAGES.galleryRidges,
   },
 ];
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageId } from '../types/retreat';
 import { RESORT_IMAGES, RESORT_FACTS } from '../data/retreatData';
+import { SafeImage } from '../components/SafeImage';
 import { Compass, Leaf, Sun, Droplets, Trees, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface AboutPageProps {
@@ -26,12 +27,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
       {/* Hero Image Showcase */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-20">
-        <div className="aspect-16/9 md:aspect-21/9 overflow-hidden border border-[#AD9870]/30 shadow-xl">
-          <img
+        <div className="overflow-hidden border border-[#AD9870]/30 shadow-xl">
+          <SafeImage
             src={RESORT_IMAGES.hero}
             alt="Vaana Retreat Forest Grounds"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
+            aspectRatio="aspect-16/9 md:aspect-21/9"
+            width={1920}
+            height={820}
+            loading="eager"
+            decoding="async"
           />
         </div>
       </div>
@@ -87,14 +91,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       <section className="bg-[#EAE4D7]/50 py-16 px-6 md:px-10 border-y border-[#AD9870]/20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-3">
-            <div className="aspect-4/3 overflow-hidden border border-[#AD9870]/20">
-              <img
-                src={RESORT_IMAGES.gardenRoom}
-                alt="Botanical bedroom"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <SafeImage
+              src={RESORT_IMAGES.gardenRoom}
+              alt="Botanical bedroom"
+              aspectRatio="aspect-4/3"
+              width={800}
+              height={600}
+              loading="lazy"
+              decoding="async"
+              wrapperClassName="border border-[#AD9870]/20"
+            />
             <h4 className="font-serif text-lg text-[#263D32]">Artisanal Handcraft</h4>
             <p className="text-xs text-[#292929]/75 font-light">
               Furniture hewn from reclaimed timber, woven jute textiles, and hand-cast bronze hardware.
@@ -102,14 +108,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="space-y-3">
-            <div className="aspect-4/3 overflow-hidden border border-[#AD9870]/20">
-              <img
-                src={RESORT_IMAGES.dining}
-                alt="Open air pavilion dining"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <SafeImage
+              src={RESORT_IMAGES.dining}
+              alt="Open air pavilion dining"
+              aspectRatio="aspect-4/3"
+              width={800}
+              height={600}
+              loading="lazy"
+              decoding="async"
+              wrapperClassName="border border-[#AD9870]/20"
+            />
             <h4 className="font-serif text-lg text-[#263D32]">Passive Aerodynamics</h4>
             <p className="text-xs text-[#292929]/75 font-light">
               High timber louvers circulate cooling mountain drafts without energy-intensive air conditioning.
@@ -117,14 +125,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="space-y-3">
-            <div className="aspect-4/3 overflow-hidden border border-[#AD9870]/20">
-              <img
-                src={RESORT_IMAGES.spa}
-                alt="Sunken natural stone pool"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <SafeImage
+              src={RESORT_IMAGES.spa}
+              alt="Sunken natural stone pool"
+              aspectRatio="aspect-4/3"
+              width={800}
+              height={600}
+              loading="lazy"
+              decoding="async"
+              wrapperClassName="border border-[#AD9870]/20"
+            />
             <h4 className="font-serif text-lg text-[#263D32]">Living Waters</h4>
             <p className="text-xs text-[#292929]/75 font-light">
               Spring-fed mineral waters filtered naturally through quartz and charcoal beds.
