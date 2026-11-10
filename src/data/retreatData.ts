@@ -6,11 +6,17 @@ export const RESORT_IMAGES = {
   sanctuaryPool: '/images/sanctuary-pool-villa.webp',
   sanctuarySpa: '/images/sanctuary-lotus-spa.webp',
   villaPool: '/images/room-pool-villa.webp',
+  villaMaster: '/images/room-villa-master.webp',
+  villaBath: '/images/room-villa-bath.webp',
   spa: '/images/sanctuary-lotus-spa.webp',
   gardenRoom: '/images/room-garden-view.webp',
+  gardenBath: '/images/room-garden-bath.webp',
   deluxeValley: '/images/room-deluxe-valley.webp',
+  deluxeBath: '/images/room-deluxe-bath.webp',
   premiumSuite: '/images/room-premium-suite.webp',
+  premiumBed: '/images/room-premium-bed.webp',
   dining: '/images/dining-pavilion-dusk.webp',
+  aboutCraft: '/images/about-artisanal-craft.webp',
   // Specific experiences
   expSpa: '/images/experience-spa-wellness.webp',
   expPool: '/images/experience-spring-pool.webp',
@@ -47,8 +53,8 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     primaryImage: RESORT_IMAGES.gardenRoom,
     galleryImages: [
       RESORT_IMAGES.gardenRoom,
-      RESORT_IMAGES.spa,
-      RESORT_IMAGES.hero,
+      RESORT_IMAGES.gardenBath,
+      RESORT_IMAGES.sanctuarySpa,
     ],
     features: [
       '420 sq. ft. living space with private garden verandah',
@@ -92,8 +98,8 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     primaryImage: RESORT_IMAGES.deluxeValley,
     galleryImages: [
       RESORT_IMAGES.deluxeValley,
-      RESORT_IMAGES.dining,
-      RESORT_IMAGES.hero,
+      RESORT_IMAGES.deluxeBath,
+      RESORT_IMAGES.galleryRidges,
     ],
     features: [
       '580 sq. ft. architectural space with expansive viewing deck',
@@ -137,7 +143,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     primaryImage: RESORT_IMAGES.premiumSuite,
     galleryImages: [
       RESORT_IMAGES.premiumSuite,
-      RESORT_IMAGES.villaPool,
+      RESORT_IMAGES.premiumBed,
       RESORT_IMAGES.dining,
     ],
     features: [
@@ -182,9 +188,9 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     primaryImage: RESORT_IMAGES.villaPool,
     galleryImages: [
       RESORT_IMAGES.villaPool,
-      RESORT_IMAGES.premiumSuite,
-      RESORT_IMAGES.dining,
-      RESORT_IMAGES.spa,
+      RESORT_IMAGES.villaMaster,
+      RESORT_IMAGES.villaBath,
+      RESORT_IMAGES.galleryPool,
     ],
     features: [
       '1,450 sq. ft. private estate with walled courtyard & cliffside terrace',

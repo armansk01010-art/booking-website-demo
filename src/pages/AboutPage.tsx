@@ -92,8 +92,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-3">
             <SafeImage
-              src={RESORT_IMAGES.gardenRoom}
-              alt="Botanical bedroom"
+              src={RESORT_IMAGES.aboutCraft}
+              alt="Artisanal handcraft woodwork and bronze joinery"
               aspectRatio="aspect-4/3"
               width={800}
               height={600}
